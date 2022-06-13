@@ -6,26 +6,17 @@ import domain.User;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ThinkOfNumberGame implements Game {
-
+public class ThinkOfNumberGame extends ThinkOfNumberGame_methods implements Game {
+    //методы вынесенены в абстрактный класс
     private static final int COUNT_OF_TRIES = 5;
     private int currentMaxNumber = 100;
     private int currentMinNumber = 0;
-
     private final User user;
 
     public ThinkOfNumberGame(User user) {
+        super(user);
         this.user = user;
-    }
-
-    private long makeBet() {
-        System.out.print("Сделайте ставку: ");
-        long bet = new Scanner(System.in).nextLong();
-        if (user.getMoney() < bet) {
-            System.out.println("У вас нет столько денег! Баланс: " + user.getMoney());
-            return makeBet();
-        } else return bet;
-    } //Проверка ставки
+    } //инициализация пользователя
 
     @Override
     public void play() {
@@ -39,16 +30,6 @@ public class ThinkOfNumberGame implements Game {
             user.increaseMoney(bet);
         }
     }
-
-    // TODO Вынести методы в абстрактный класс
-
-    private void checkUserReady() {
-        System.out.println("Загадайте число от 0 до 100 и вбейте 'Загадал'.");
-        String ready = new Scanner(System.in).nextLine();
-        if (!ready.equalsIgnoreCase("Загадал")) {
-            checkUserReady();
-        }
-    } // Проверка на готовность
 
     private boolean guessUsersNumber(int numberToGuess, int currentTry, int currentMinNumber, int currentMaxNumber) {
         if (checkCountOfTries(currentTry)) {
@@ -81,9 +62,4 @@ public class ThinkOfNumberGame implements Game {
             return false;
         }
     }
-
-
-    private boolean checkCountOfTries(int currentTry) {
-        return currentTry == COUNT_OF_TRIES;
-    } //учитывается количество попыток
 }
