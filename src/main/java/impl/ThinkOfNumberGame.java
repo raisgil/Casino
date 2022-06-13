@@ -6,7 +6,7 @@ import domain.User;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ThinkOfNumberGame extends ThinkOfNumberGame_methods implements Game {
+public class ThinkOfNumberGame extends GamesMethods implements Game {
     //методы вынесенены в абстрактный класс
     private static final int COUNT_OF_TRIES = 5;
     private int currentMaxNumber = 100;
@@ -21,6 +21,7 @@ public class ThinkOfNumberGame extends ThinkOfNumberGame_methods implements Game
     @Override
     public void play() {
         long bet = makeBet();
+        System.out.println("Загадайте число от 0 до 100 и вбейте 'Готов'.");
         checkUserReady();
         int currentTry = 0;
         int numberToGuess = new Random().nextInt(101);

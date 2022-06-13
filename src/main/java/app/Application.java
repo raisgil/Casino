@@ -14,7 +14,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Registrator registrator = new RegistratorImpl();
         GameChooser gameChooser = new GameChooserImpl();
         User user = registrator.registerUser();

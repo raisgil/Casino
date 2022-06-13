@@ -4,13 +4,14 @@ import domain.Game;
 import domain.User;
 
 import java.util.Scanner;
+import java.util.function.DoubleToIntFunction;
 
 
-public abstract class ThinkOfNumberGame_methods implements Game {
+public abstract class GamesMethods implements Game {
     private final User user;
     private static final int COUNT_OF_TRIES = 5;
 
-    protected ThinkOfNumberGame_methods(User user) {
+    protected GamesMethods(User user) {
         this.user = user;
     }
 
@@ -24,9 +25,9 @@ public abstract class ThinkOfNumberGame_methods implements Game {
     } //Проверка ставки
 
     protected void checkUserReady() {
-        System.out.println("Загадайте число от 0 до 100 и вбейте 'Загадал'.");
         String ready = new Scanner(System.in).nextLine();
-        if (!ready.equalsIgnoreCase("Загадал")) {
+        if (!ready.equalsIgnoreCase("Готов")) {
+            System.out.print("Просто введите 'Готов': ");
             checkUserReady();
         }
     } // Проверка на готовность

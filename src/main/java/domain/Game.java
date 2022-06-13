@@ -8,5 +8,5 @@ public interface Game {
     /**
      * Запуск игры.
      */
-    void play();
+    void play() throws InterruptedException;
 }
