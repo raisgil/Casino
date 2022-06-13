@@ -18,10 +18,19 @@ public class ThinkOfNumberGame implements Game {
         this.user = user;
     }
 
+    private long makeBet() {
+        System.out.print("Сделайте ставку: ");
+        long bet = new Scanner(System.in).nextLong();
+        if (user.getMoney() < bet) {
+            System.out.println("У вас нет столько денег! Баланс: "+user.getMoney());
+            return makeBet();
+        } else return bet;
+    }
+
     @Override
     public void play() {
         long bet = makeBet();
-        //TODO После рефакторинга метогда checkUserReady убрать неиспользуюмую переменную isUserRady.
+        // TODO После рефакторинга метода checkUserReady убрать неиспользуюмую переменную isUserRady.
         String isUserReady = checkUserReady();
         int currentTry = 0;
         int numberToGuess = new Random().nextInt(101);
@@ -32,12 +41,7 @@ public class ThinkOfNumberGame implements Game {
         }
     }
 
-    //TODO Вынести методы в абстрактный класс
-    private long makeBet() {
-        //TODO Добавить проверку ставки, чтобы не превышала деньги на счете.
-        System.out.print("Сделайте ставку: ");
-        return new Scanner(System.in).nextLong();
-    }
+    // TODO Вынести методы в абстрактный класс
 
     private String checkUserReady() {
         //TODO Проверить что ввел пользователь.
@@ -74,7 +78,8 @@ public class ThinkOfNumberGame implements Game {
         }
         return false;
     }
-    private boolean checkCountOfTries (int currentTry){
+
+    private boolean checkCountOfTries(int currentTry) {
         return currentTry == COUNT_OF_TRIES;
     }
 }

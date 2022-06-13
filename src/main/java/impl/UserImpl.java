@@ -6,10 +6,22 @@ public class UserImpl implements User {
     private static final long WELCOME_BONUS = 1000;
     private final String name;
     private long money;
+    private int winstreak;
 
     public UserImpl(String name) {
         this.name = name;
         this.money = WELCOME_BONUS;
+        this.winstreak = 0;
+    }
+
+    @Override
+    public void winSreak(int winstreak) {
+        this.winstreak += winstreak;
+    }
+
+    @Override
+    public int getWinStreak() {
+        return this.winstreak;
     }
 
     @Override
@@ -19,9 +31,9 @@ public class UserImpl implements User {
 
     @Override
     public void reduceMoney(long amount) {
-        // TODO добавить проверку ухода в минус
         this.money -= amount;
     }
+
 
     @Override
     public String getName() {
@@ -32,4 +44,6 @@ public class UserImpl implements User {
     public long getMoney() {
         return this.money;
     }
+
+
 }

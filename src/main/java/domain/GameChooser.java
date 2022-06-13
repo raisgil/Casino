@@ -7,6 +7,7 @@ package domain;
 public interface GameChooser {
     /**
      * Базовый интерфейс выбора Игры.
+     *
      * @param user
      * @return
      */
